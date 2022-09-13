@@ -35,6 +35,10 @@ Given("Enter name and email address", function() {
     signuploginpage.SignUpNameBox().type(faker.name.firstName())
     signuploginpage.SignUpEmailBox().type(faker.internet.email()) 
 })
+Given("Enter name and already registered email address", function() {
+    signuploginpage.SignUpNameBox().type("cebeyden")
+    signuploginpage.SignUpEmailBox().type("cebeyden@gmail.com") 
+})
 Given("Click 'Signup' button", function() {
     signuploginpage.SignUpButton().click()
 })
@@ -70,15 +74,39 @@ Given("Click 'Create Account button'", function() {
     accountinfo.createaccountbutton().click()
 })
 Given("Verify that 'ACCOUNT CREATED!' is visible", function() {
-    cy.get('b').should("be.visible")
+   accountinfo.accountcreatedText().should("be.visible")
 })
 Given("Click 'Continue' button", function() {
-    cy.get('.pull-right .btn').click({force:true})
+    accountinfo.comtinueButton().click({force:true})
 })
 Given("Verify that 'Logged in as username' is visible", function() {
-    cy.get(':nth-child(10) > a').should("be.visible")
+    homepage.logged_in_as().should("be.visible")
 })
 
+
+Given("Verify 'Login to your account' is visible", function() {
+    signuploginpage.LoginHeader().should("have.text","Login to your account")
+})
+Given("Enter correct email address and password", function() {
+    signuploginpage.LoginEmailBox().type("amazontestcypress@gmail.com")
+    signuploginpage.LoginPasswordBox().type("2301")
+})
+Given("Enter incorrect email address and password", function() {
+    signuploginpage.LoginEmailBox().type("abc@gmail")
+    signuploginpage.LoginPasswordBox().type(" ")
+})
+Given("Verify error 'Your email or password is incorrect!' is visible", function() {
+    signuploginpage.incorrectEmailPassword().should("have.text","Your email or password is incorrect!")
+})
+Given("Click 'login' button", function() {
+    signuploginpage.LoginButton().click()
+})
+Given("Click 'Logout' button", function() {
+    homepage.Logout().click()
+})
+Given("Verify error 'Email Address already exist!' is visible", function() {
+    signuploginpage.emailAlreadyExistText().should("have.text","Email Address already exist!")
+})
 
 
 

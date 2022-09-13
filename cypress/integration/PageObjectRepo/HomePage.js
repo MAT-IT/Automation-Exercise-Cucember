@@ -59,6 +59,12 @@ class HomePage {
    recomendedAddToCart(){
     return cy.get('.active > :nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn')
    }
+   deleteAccount(){
+    return cy.get('.shop-menu > .nav > :nth-child(5) > a')
+    }
+   Logout(){
+    return cy.get('.shop-menu > .nav > :nth-child(4) > a')
+    }
    
 
 }

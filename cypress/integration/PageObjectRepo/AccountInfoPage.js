@@ -68,6 +68,12 @@ class AccountInfo {
     createaccountbutton(){
         return cy.get('.login-form > form > .btn')
     }
+    accountcreatedText(){
+        return  cy.get('b')
+    }
+    comtinueButton(){
+        return cy.get('.pull-right .btn')
+    }
 
 }
 

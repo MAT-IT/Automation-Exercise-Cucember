@@ -3,7 +3,7 @@ Feature: Register And Login
     Background: set up environment
         Then get data from Fixtures
         
-    @focus
+   
     Scenario: TC01 Register User      
         And Navigate to url
         And Verify that home page is visible successfully
@@ -20,7 +20,7 @@ Feature: Register And Login
         And Verify that 'ACCOUNT CREATED!' is visible
         And Click 'Continue' button
         And Verify that 'Logged in as username' is visible
-            
+        
     Scenario: TC02  Login User with correct email and password
         And Navigate to url
         And Verify that home page is visible successfully
@@ -29,7 +29,7 @@ Feature: Register And Login
         And Enter correct email address and password
         And Click 'login' button
         And Verify that 'Logged in as username' is visible
-
+   
     Scenario: TC03  Login User with incorrect email and password
         And Navigate to url
         And Verify that home page is visible successfully
@@ -48,8 +48,7 @@ Feature: Register And Login
         And Click 'login' button
         And Verify that 'Logged in as username' is visible
         And Click 'Logout' button
-        And Verify that user is navigated to login page
-
+        
     Scenario: TC05 Register User with existing email
         And Navigate to url
         And Verify that home page is visible successfully
