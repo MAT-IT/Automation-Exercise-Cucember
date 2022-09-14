@@ -43,7 +43,7 @@ Given("Verify success message 'Success! Your details have been submitted success
 })
 Given("Click 'Home' button and verify that landed to home page successfully",()=>{
     contactUs.backhomepage().click()
-    homepage.logo().should("be.visible")
+   
 })
 
 
