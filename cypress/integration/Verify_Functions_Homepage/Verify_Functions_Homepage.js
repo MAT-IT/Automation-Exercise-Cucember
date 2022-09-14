@@ -2,9 +2,11 @@
 import { Given, And, Then } from "cypress-cucumber-preprocessor/steps";
 import HomePage from "../PageObjectRepo/HomePage"
 import contactUsPage from "../PageObjectRepo/ContactUsPage";
+import TestCasePage from "../PageObjectRepo/TestCasePage"
 
 const homepage = new HomePage();
-const contactUs = new contactUsPage;
+const contactUs = new contactUsPage();
+const testcasepage =new TestCasePage()
 
 Then("get data from Fixtures", function () {
     cy.fixture("data").then(
@@ -45,5 +47,30 @@ Given("Click 'Home' button and verify that landed to home page successfully",()=
     contactUs.backhomepage().click()
    
 })
+Given("Click on 'Test Cases' button",()=>{
+    homepage.TestCaseBtn().click()
+})
+Given("Verify user is navigated to test cases page successfully",()=>{
+    testcasepage.header().should("have.text","Test Cases")
+    //"test case lenght verify
+    testcasepage.testcasesCount().then(function(item){
+        const itemCount = Cypress.$(item).length;
+        testcasepage.testcasesCount().should("have.length",itemCount)
+        
+    })
+})
 
+Given("Verify text 'SUBSCRIPTION'",()=>{
+    homepage.subscriptionTitle().should("have.text","Subscription")
+})
+Given("Enter email address in input and click arrow button",()=>{
+    homepage.subscripEmailBox().type("hello@gmail.com")
+    homepage.subscripButton().click().wait(5000)
+})
+Given("Verify success message 'You have been successfully subscribed!' is visible",()=>{
+    cy.get('.footer-widget > .container').contains("You have been successfully subscribed!")
+})
+Given("Click 'Cart' button",()=>{
+    homepage.cartBtn().click()
+})
 
