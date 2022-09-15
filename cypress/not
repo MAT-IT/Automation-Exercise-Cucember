@@ -10,3 +10,33 @@ import "cypress-real-events/support";
 And in your code you can directly write:
 
 cy.contains("a", "Custom").realHover('mouse')
+
+***navigate from feature file to step definition and vice versa in Cypress (VSCode)***
+link : https://stackoverflow.com/questions/66434401/is-it-possible-to-navigate-from-feature-file-to-step-definition-and-vice-versa-i
+1-Plesase navigate in VSCode File > Preferences > Settings (Code > Preferences > Settings on Mac) then select Workspace.
+2-Open settings.json file from top-right corner.
+3-Set following settings in your settings.json file and save the file. Please keep your hierarchy of files.
+
+"cucumberautocomplete.steps": [
+     "cypress/integration/*/*.js"
+   ],
+"cucumberautocomplete.syncfeatures": "cypress/integration/*.feature",
+"cucumberautocomplete.strictGherkinCompletion": false,
+"cucumberautocomplete.smartSnippets": true,
+"cucumberautocomplete.stepsInvariants": true
+
+***how to use common feature steps in cypress****
+link: https://stackoverflow.com/questions/67380480/cypress-cucumber-same-steps-definition
+
+If there are two steps for multiple scenarios you should use common steps:
+
+Reusable step definitions We also have a way to create reusable step definitions. Put them in cypress/integration/common/
+
+Example: cypress/integration/common/i_see_string_in_the_title.js
+
+import { Then } from "cypress-cucumber-preprocessor/steps";
+
+Then(`I see {string} in the title`, (title) => {
+  cy.title().should('include', title)
+})
+taken from https://www.npmjs.com/package/cypress-cucumber-preprocessor

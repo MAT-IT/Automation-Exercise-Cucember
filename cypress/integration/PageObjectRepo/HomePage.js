@@ -1,4 +1,5 @@
 class HomePage {
+    
     SignUploginButton(){
         return cy.get('.shop-menu > .nav > :nth-child(4) > a')
     }
@@ -64,8 +65,7 @@ class HomePage {
     }
    Logout(){
     return cy.get('.shop-menu > .nav > :nth-child(4) > a')
-    }
-   
+    }   
 
 }
 export default HomePage;
