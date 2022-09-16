@@ -10,17 +10,7 @@ const productpage = new productPage();
 const searchproduct= new searchProductPage()
 const cartpage =new CartPage()
 
-Then("get data from Fixtures", function () {
-    cy.fixture("data").then(
-        function (data) {
-            this.data = data
-        }
-    )
-})
 
-Given("Navigate to url", function () {
-    cy.visit(this.data.url)
-})
 Given("Verify that home page is visible successfully",()=>{
     cy.title("includes","Automation")
 })

@@ -2,24 +2,12 @@
 import { Given, And, Then } from "cypress-cucumber-preprocessor/steps";
 import HomePage from "../PageObjectRepo/HomePage";
 import CartPage from "../PageObjectRepo/CartPage";
+import { stateStore } from '../helper';
 
 const homepage = new HomePage();
 const cartpage =new CartPage();
 
-// Then("get data from Fixtures", function () {
-//     cy.fixture("data").then(
-//         function (data) {
-//             this.data = data
-//         }
-//     )
-// })
-// Given("Navigate to url", function () {
-//     cy.visit(this.data.url)
-   
-// })
-Given("Verify that home page is visible successfully", () => {
-    cy.title().should("contain", "Automation Exercise")    
-})
+
 Given("Add products to cart",()=>{
     homepage.AddToCartBtn().eq(2).click().wait(5000)
 })
@@ -80,3 +68,15 @@ Given("Verify that product is removed from the cart",()=>{
 })
 
 
+
+// step used in first scenario
+Given("first variable", () => {
+    cy.log(stateStore.someValue)
+    cy.log(`Print first value: ${stateStore.someValue}`)
+    stateStore.someValue = 30;
+});
+
+// step used in second scenario
+When("second variable", () => {
+   cy.log(`Print second value: ${stateStore.someValue}`);
+});

@@ -4,32 +4,17 @@ import AccountInfo from "../PageObjectRepo/AccountInfoPage";
 import HomePage from "../PageObjectRepo/HomePage"
 import signUpLoginPage from "../PageObjectRepo/SignUp_Login_page";
 import { faker } from '@faker-js/faker';
+
 const homepage = new HomePage();
 const signuploginpage = new signUpLoginPage();
 const accountinfo = new AccountInfo();
 
-Then("get data from Fixtures", function () {
-    cy.fixture("data").then(
-        function (data) {
-            this.data = data
-        }
-    )
-})
-
-Given("Navigate to url", function () {
-    cy.visit(this.data.url)
-})
-
-Given("Verify that home page is visible successfully", () => {
-    cy.title().should("contain", "Automation Exercise")
-    
-})
 
 Given("Click on 'Signup / Login' button",function() {
     homepage.SignUploginButton().click()
 })
-Given("Verify 'New User Signup!' is visible", () => {
-    signuploginpage.signUpFormHeader().should("contain", "New User Signup!")
+Given("Verify {string} is visible", (text) => {
+    signuploginpage.LoginHeader().should("contain", text)
 })
 Given("Enter name and email address", function() {
     signuploginpage.SignUpNameBox().type(faker.name.firstName())
@@ -91,12 +76,12 @@ Given("Enter correct email address and password", function() {
     signuploginpage.LoginEmailBox().type("amazontestcypress@gmail.com")
     signuploginpage.LoginPasswordBox().type("2301")
 })
-Given("Enter incorrect email address and password", function() {
-    signuploginpage.LoginEmailBox().type("abc@gmail")
-    signuploginpage.LoginPasswordBox().type(" ")
+Given("Enter {string} address and {string}", function(email,password) {
+    signuploginpage.LoginEmailBox().type(email,{force:true})
+    signuploginpage.LoginPasswordBox().type(password,{force:true})
 })
-Given("Verify error 'Your email or password is incorrect!' is visible", function() {
-    signuploginpage.incorrectEmailPassword().should("have.text","Your email or password is incorrect!")
+Given("Verify error {string} is visible", function(text) {
+    signuploginpage.incorrectEmailPassword().should("have.text",text)
 })
 Given("Click 'login' button", function() {
     signuploginpage.LoginButton().click()
@@ -104,8 +89,8 @@ Given("Click 'login' button", function() {
 Given("Click 'Logout' button", function() {
     homepage.Logout().click()
 })
-Given("Verify error 'Email Address already exist!' is visible", function() {
-    signuploginpage.emailAlreadyExistText().should("have.text","Email Address already exist!")
+Given("Verify error {string} is visible", function(text) {
+    signuploginpage.emailAlreadyExistText().should("have.text",text)
 })
 
 

@@ -8,21 +8,7 @@ const homepage = new HomePage();
 const contactUs = new contactUsPage();
 const testcasepage =new TestCasePage()
 
-Then("get data from Fixtures", function () {
-    cy.fixture("data").then(
-        function (data) {
-            this.data = data
-        }
-    )
-})
-Given("Navigate to url", function () {
-    cy.visit(this.data.url)
-})
 
-Given("Verify that home page is visible successfully", () => {
-    cy.title().should("contain", "Automation Exercise")
-    
-})    
 Given("Click on 'Contact Us' button",()=>{
     homepage.ContactUsBotton().click()
 })

@@ -1,13 +1,12 @@
 Feature: Register And Login
  
     Background: set up environment
-        Then get data from Fixtures
-        
-   
-    Scenario: TC01 Register User      
         And Navigate to url
         And Verify that home page is visible successfully
         And Click on 'Signup / Login' button
+   
+    Scenario: TC01 Register User      
+        
         And Verify 'New User Signup!' is visible
         And Enter name and email address
         And Click 'Signup' button
@@ -22,27 +21,26 @@ Feature: Register And Login
         And Verify that 'Logged in as username' is visible
         
     Scenario: TC02  Login User with correct email and password
-        And Navigate to url
-        And Verify that home page is visible successfully
-        And Click on 'Signup / Login' button
+        
         And Verify 'Login to your account' is visible
         And Enter correct email address and password
         And Click 'login' button
         And Verify that 'Logged in as username' is visible
    
-    Scenario: TC03  Login User with incorrect email and password
-        And Navigate to url
-        And Verify that home page is visible successfully
-        And Click on 'Signup / Login' button
+    @focus
+    Scenario Outline: TC03  Login User with incorrect email and password       
         And Verify 'Login to your account' is visible
-        And Enter incorrect email address and password
+        And Enter "<incorrect email>" address and "<password>" 
         And Click 'login' button
         And Verify error 'Your email or password is incorrect!' is visible
+        Examples:
+            | incorrect email | password | 
+            | abgd@gmail.com | 5574  | 
+            | yfdd@gmail.com | 7985  |
+
 
     Scenario: TC04  Logout User
-        And Navigate to url
-        And Verify that home page is visible successfully
-        And Click on 'Signup / Login' button
+        
         And Verify 'Login to your account' is visible
         And Enter correct email address and password
         And Click 'login' button
@@ -50,15 +48,18 @@ Feature: Register And Login
         And Click 'Logout' button
         
     Scenario: TC05 Register User with existing email
-        And Navigate to url
-        And Verify that home page is visible successfully
-        And Click on 'Signup / Login' button
+        
         And Verify 'New User Signup!' is visible
         And Enter name and already registered email address
         And Click 'Signup' button
         And Verify error 'Email Address already exist!' is visible
-        
-
+    
+    Scenario: deneme email
+        And Verify 'New User Signup!' is visible
+        And Enter name and already registered email address
+        And Click 'Signup' button
+        And Verify error 'Email Address already exist!' is visible
+    
 
    
 
