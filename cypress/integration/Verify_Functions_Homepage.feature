@@ -11,7 +11,7 @@ Feature: Contact Us Form
         And Enter name, email, subject and message
         And Upload file And Click 'Submit' button 
         And Verify success message 'Success! Your details have been submitted successfully.' is visible
-        And Click 'Home' button and verify that landed to home page successfully
+        And Click 'Home' button and verify that landed to home page successfully        
     
     Scenario: TC07 Verify Test Cases Page 
         
@@ -30,4 +30,9 @@ Feature: Contact Us Form
         And Verify text 'SUBSCRIPTION'
         And Enter email address in input and click arrow button
         And Verify success message 'You have been successfully subscribed!' is visible
+    
         
+
+
+
+

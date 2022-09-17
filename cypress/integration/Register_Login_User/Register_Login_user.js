@@ -10,6 +10,7 @@ const signuploginpage = new signUpLoginPage();
 const accountinfo = new AccountInfo();
 
 
+
 Given("Click on 'Signup / Login' button",function() {
     homepage.SignUploginButton().click()
 })

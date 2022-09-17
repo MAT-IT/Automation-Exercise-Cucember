@@ -57,11 +57,7 @@ Feature: Register And Login
         And Verify that cart page is displayed
         And Click 'X' button corresponding to particular product
         And Verify that product is removed from the cart
-    @focus
-    Scenario: deneme        
-        And first variable
-        And second variable
-       
+    
         
 
 

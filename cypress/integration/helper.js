@@ -1,5 +1,6 @@
-export const stateStore = {
+export const commonVariable = {
     
-    url:"http://automationexercise.com"
-
+    url:"http://automationexercise.com",
+    productName : [],
+    cartNameArr: []
 };
