@@ -66,6 +66,9 @@ class HomePage {
    Logout(){
     return cy.get('.shop-menu > .nav > :nth-child(4) > a')
     }   
+    DownloadInvoiceButton(){
+        return cy.get('.col-sm-9 > .btn-default')
+    }
 
 }
 export default HomePage;
