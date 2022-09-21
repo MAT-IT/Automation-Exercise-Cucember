@@ -23,6 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+require('cypress-downloadfile/lib/downloadFileCommand');
 import 'cypress-file-upload'
 import AccountInfo from '../integration/PageObjectRepo/AccountInfoPage'
 import HomePage from '../integration/PageObjectRepo/HomePage'

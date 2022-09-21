@@ -40,3 +40,52 @@ Then(`I see {string} in the title`, (title) => {
   cy.title().should('include', title)
 })
 taken from https://www.npmjs.com/package/cypress-cucumber-preprocessor
+
+***verify download file***
+Installation
+npm i -D cy-verify-downloads
+Extend Cypress command
+This package extends Cypress' cy command.
+
+For Cypress v10+:
+
+Add this line to your project's cypress/support/e2e.js:
+
+require('cy-verify-downloads').addCustomCommand();
+Then you need to add the following lines of code to your project's cypress.config.js:
+
+const { verifyDownloadTasks } = require('cy-verify-downloads');
+
+module.exports = defineConfig({
+  e2e: {
+    setupNodeEvents(on, config) {
+      on('task', verifyDownloadTasks);
+    },
+  },
+});
+For Cypress v9:
+
+So, you need to add this line to your project's cypress/support/commands.js:
+
+require('cy-verify-downloads').addCustomCommand();
+And add the following lines to your project's cypress/plugins/index.js:
+
+const { verifyDownloadTasks } = require('cy-verify-downloads');
+
+module.exports = (on, config) => {
+  on('task', verifyDownloadTasks)
+}
+Usage
+Then, in your test, you can use it like this:
+
+cy.verifyDownload('picture.png');
+
+// verify download by file extension or partial filename
+cy.verifyDownload('.png', { contains: true });
+cy.verifyDownload('pic', { contains: true });
+
+// or increase timeout
+cy.verifyDownload('archive.zip', { timeout: 25000 });
+
+// or increase timeout and interval pooling
+cy.verifyDownload('archive.zip', { timeout: 25000, interval: 600 });

@@ -3,6 +3,7 @@ import { Given, And, Then } from "cypress-cucumber-preprocessor/steps";
 import HomePage from "../PageObjectRepo/HomePage"
 import CartPage from "../PageObjectRepo/CartPage"
 
+
 const homepage = new HomePage()
 const cartpage =new CartPage()
 Given("Add products to cart",()=>{
@@ -52,6 +53,8 @@ Given("Verify success message 'Your order has been placed successfully!'",()=>{
 })
 Given("Click 'Download Invoice' button and verify invoice is downloaded successfully.",()=>{
     homepage.DownloadInvoiceButton().click()
+    cy.readFile("./downloads/invoice.txt").should("contain","Hi ali")
+    
 })
        
     
