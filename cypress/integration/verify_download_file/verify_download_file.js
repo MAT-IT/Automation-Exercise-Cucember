@@ -53,7 +53,8 @@ Given("Verify success message 'Your order has been placed successfully!'",()=>{
 })
 Given("Click 'Download Invoice' button and verify invoice is downloaded successfully.",()=>{
     homepage.DownloadInvoiceButton().click()
-    cy.readFile("./downloads/invoice.txt").should("contain","Hi ali")
+    
+    //cy.log(cy.fixture("./downloads/invoice.txt"))
     
 })
        
